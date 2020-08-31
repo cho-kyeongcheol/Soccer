@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.edu.dao.IF_MemberDAO">
+
+<insert id = "insertMember">
+insert into tbl_member (user_id,user_pw,user_name,email,levels,enabled,reg_date) 
+values(#{user_id},#{user_pw},#{user_name},#{email},#{levels},#{enabled},now())
+</insert>
+
+<select id="selectMember" resultType="org.edu.vo.MemberVO">
+select * from tbl_member 
+</select>
+
+<update id="updateMember">
+update tbl_member set
+user_pw = #{user_pw},
+user_name = #{user_name},
+email = #{email},
+levels = #{levels},
+enabled = #{enabled},
+reg_date = now()
+where user_id = #{user_id}
+
+</update>
+
+<delete id="deleteMember">
+delete from tbl_member where user_id = #{user_id}
+</delete>
+
+<select id="viewMember" resultType="org.edu.vo.MemberVO">
+		select * from tbl_member where user_id = #{user_id}  
+</select>
+</mapper>
